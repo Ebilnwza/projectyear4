@@ -1,0 +1,31 @@
+<html>
+<head>
+   <title>License Plate Detection</title>
+   <style>
+    .content{
+        display: flex;
+        margin: 10%;
+        flex-wrap: wrap;
+        border: 12px solid black;
+        justify-content: center;
+    }
+    .image{
+        margin: 10px;
+        width: 400px;
+        height: 400px;
+    }
+   </style>
+</head>
+<body>
+   <h1>License Plate Detection</h1>
+   <form action="/success" method="post" enctype="multipart/form-data">
+      <input type="file" name="files" multiple />
+      <input type="submit" value="Upload">
+   </form>
+   <div class="content">
+{% for image in images %}
+    <img class="image" src={{ image }} alt="Image">
+ {% endfor %}
+   </div>
+</body>
+</html>
