@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 import cv2
 
-class LICENSEPLATE_DETECTION:
+class fish:
     def __init__(self, model_path):
         # Load the YOLO model
         self.model = YOLO(model_path)
@@ -9,9 +9,12 @@ class LICENSEPLATE_DETECTION:
     def __call__(self, input_image, output_path):
         # Read the image to be detected
         img = cv2.imread(input_image)
-        
+
+        # Resize the image to 500x500 pixels
+        img = cv2.resize(img, (800,800))
+
         # Detect and store the results
-        results = self.model(input_image)[0]
+        results = self.model(img)[0]  # Make sure the YOLO model can accept numpy array as input
 
         # Variable to count the number of detected boxes
         count_boxes = 0

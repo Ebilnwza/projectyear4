@@ -1,10 +1,10 @@
 from flask import *
-from predict import LICENSEPLATE_DETECTION
+from predict import fish
 from datetime import datetime
 from werkzeug.utils import secure_filename
 app = Flask(__name__, template_folder='template')
 # ใส่ path ของ model ของเรา
-pred = LICENSEPLATE_DETECTION("best.pt")
+pred = fish("best.pt")
 
 @app.route('/public/<path:path>')
 def send_report(path):
@@ -25,7 +25,7 @@ def successPOST():
             f.save(f"public/{date}_{filename}")
 
             # Perform detection for each uploaded file
-            detection = LICENSEPLATE_DETECTION("best.pt")
+            detection = fish("best.pt")
             output_path = f"public/{date}_output_{filename}"
             detection(f"public/{date}_{filename}", output_path)
 
